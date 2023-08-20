@@ -2,6 +2,8 @@ name: Deploy to cloudtype
 on:
   push:
     branches:
+      - main
+      - develop
       - test
 jobs:
   deploy:
