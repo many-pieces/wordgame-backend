@@ -1,0 +1,40 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - test
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: maltepoo/wordgame
+          stage: main
+          yaml: |
+            name: wordgame-backend
+            app: java@17
+            options:
+              ports: 8080
+              env:
+                - name: KornApiKey
+                  value: 7057D9CA001195F610610824A696933E
+                - name: clientId
+                  value: PBvfBVZyoKJAJOiODiCx
+                - name: clientSecret
+                  value: LX8XzGU7GZ
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
