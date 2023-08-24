@@ -28,17 +28,17 @@ public class WordService {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
-        String response = webClient.get()
+        KornResponseDto response = webClient.get()
                 .uri(uri -> uri.queryParam("key", KornDictKey)
                         .queryParam("q", word)
                         .queryParam("req_type", "json").build())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 // TODO : DTO로 변경 예정
-                // .bodyToMono(KornResponseDto.class)
-                .bodyToMono(String.class)
+                 .bodyToMono(KornResponseDto.class)
+//                .bodyToMono(String.class)
                 .block();
-
+        System.out.println("response.toString() = " + response.toString());
         return response != null;
     }
 
