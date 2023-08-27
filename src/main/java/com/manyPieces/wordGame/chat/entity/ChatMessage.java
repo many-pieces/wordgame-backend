@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collation = "chatMessage")
+@Document(collection = "chatMessage")
 @EntityListeners(AuditingEntityListener.class)
 public class ChatMessage {
 

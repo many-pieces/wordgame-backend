@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collation = "chatRoom")
+@Document(collection = "chatRoom")
 @EntityListeners(AuditingEntityListener.class)
 public class ChatRoom {
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.rmi.NoSuchObjectException;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,9 +27,9 @@ public class ChatRoomController {
     }
 
     @PostMapping("/room")
-    public ResponseEntity<String> createRoom(String name) {
+    public ResponseEntity<String> createRoom(@RequestBody Map<String, String> map) {
 
-        chatRoomService.create(name);
+        chatRoomService.create(map.get("name"));
 
         return ResponseEntity.status(HttpStatus.OK).body("채팅방 생성 완료!");
     }
